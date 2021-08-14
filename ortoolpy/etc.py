@@ -1214,7 +1214,7 @@ def logistics_network(
     tbdi2["VarX"] = addvars(tbdi2.shape[0])
     tbfa["VarY"] = addvars(tbfa.shape[0])
     tbsm = pd.concat(
-        [tbdi2.groupby(facprd).VarX.sum(), tbfa.groupby(facprd).VarY.sum()], 1
+        [tbdi2.groupby(facprd).VarX.sum(), tbfa.groupby(facprd).VarY.sum()], axis=1
     )
     tbde2 = pd.merge(tbde, tbdi2.groupby([dep, prd]).VarX.sum().reset_index())
     m += lpDot(tbdi2[tcs], tbdi2.VarX) + lpDot(tbfa[pcs], tbfa.VarY)
